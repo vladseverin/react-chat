@@ -136,7 +136,28 @@ const styles = theme => ({
     color: '#000000',
     fontSize: '0.75rem', 
     opacity: '0.54',
-  }
+  },
+  inputMessage: {
+    left: 'auto',
+    right: 0,
+    width: 'calc(100% - 320px)',
+    bottom: 0,
+    padding: 24,
+    position: 'fixed',
+  },
+  paperInputMessage: {
+    padding: 16,
+  },
+  entryField: {
+    width: '100%',
+  },
+  historyBlock: {
+    padding: '8px 24px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+  },
 });
 
 class App extends React.Component {
@@ -179,11 +200,9 @@ class App extends React.Component {
               <Input
                 placeholder="Search chat..."
                 className={classes.input}
-                inputProps={{
-                  'aria-label': 'Description',
-                }}
               />
             </div>
+
             <Divider />
 
             {/* Implemented list of chats */}
@@ -219,6 +238,15 @@ class App extends React.Component {
           {/* Implemented chats list */}
           <main className={classes.content}>
             <div className={classes.contentChat}>
+              {/*Implemented history block */}
+              <div className={classes.historyBlock} >
+                <Typography component="p">
+                  <span className={classes.senderName} >Severin Vladislav</span> joined
+                  <Typography className={classes.dispatchTime} component="span">
+                    2 days ago
+                  </Typography>
+                </Typography>
+              </div>
               {
                 data.messages.map((item, index) => (
                   <div key={index} className={classes.someoneSentMessageBlock}>
@@ -242,6 +270,24 @@ class App extends React.Component {
                   )
                 )
               }
+              {/*Implemented history block */}
+              <div className={classes.historyBlock} >
+                <Typography component="p">
+                  <span className={classes.senderName} >Severin Vladislav</span> left
+                  <Typography className={classes.dispatchTime} component="span">
+                    2 days ago
+                  </Typography>
+                </Typography>
+              </div>
+
+            </div>
+            <div className={classes.inputMessage}>
+              <Paper className ={classes.paperInputMessage}>
+                <Input
+                  placeholder="Type your message..."
+                  className={classes.entryField}
+                />
+              </Paper>
             </div>
           </main>
           
