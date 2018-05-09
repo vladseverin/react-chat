@@ -1,4 +1,5 @@
 import React from 'react';
+import { data } from './data';
 
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
@@ -13,15 +14,13 @@ import Input from 'material-ui/Input'; //enabling the search bar
 
 import List, { ListItem, ListItemText } from 'material-ui/List'; //enabling list of chats 
 import Avatar from 'material-ui/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
-import WorkIcon from '@material-ui/icons/Work';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';//enabling bottom nav-bar 
 import RestoreIcon from '@material-ui/icons/Restore';
 import Explore from '@material-ui/icons/Explore';
 
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'; //color theme scheme
+
 
 
 const theme = createMuiTheme({
@@ -69,7 +68,6 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
   },
 
   container: {
@@ -88,6 +86,12 @@ const styles = theme => ({
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
+  },
+
+  orangeAvatar: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: '#F44336',
   },
 });
 
@@ -114,16 +118,20 @@ class App extends React.Component {
           >
             <Toolbar>
               <Typography variant="title" color="inherit" noWrap>
-                DogeCodes React Chat
+                Juicy Chat
               </Typography>
             </Toolbar>
           </AppBar>
+
+          {/* Implemented sidebar(drawer) */}
           <Drawer
             variant="permanent"
             classes={{
               paper: classes.drawerPaper,
             }}
           >
+          
+            {/* Implemented search bar */}
             <div className={classNames(classes.toolbar, classes.customToolbar)} >
               <Input
                 placeholder="Placeholder"
@@ -135,77 +143,29 @@ class App extends React.Component {
             </div>
             <Divider />
 
+            {/* Implemented list of chats */}
             <div className={classes.asideList}>
               <List>
-                <ListItem>
-                  <Avatar>
-                    <ImageIcon />
-                  </Avatar>
-                  <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-                </ListItem>
-                <ListItem>
-                  <Avatar>
-                    <WorkIcon />
-                  </Avatar>
-                  <ListItemText primary="Work" secondary="Jan 7, 2014" />
-                </ListItem>
-                <ListItem>
-                  <Avatar>
-                    <BeachAccessIcon />
-                  </Avatar>
-                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
-                </ListItem>
-                <ListItem>
-                  <Avatar>
-                    <BeachAccessIcon />
-                  </Avatar>
-                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
-                </ListItem>
-                <ListItem>
-                  <Avatar>
-                    <BeachAccessIcon />
-                  </Avatar>
-                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
-                </ListItem>
-                <ListItem>
-                  <Avatar>
-                    <BeachAccessIcon />
-                  </Avatar>
-                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
-                </ListItem>
-                <ListItem>
-                  <Avatar>
-                    <BeachAccessIcon />
-                  </Avatar>
-                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
-                </ListItem>
-                <ListItem>
-                  <Avatar>
-                    <BeachAccessIcon />
-                  </Avatar>
-                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
-                </ListItem>
-                <ListItem>
-                  <Avatar>
-                    <BeachAccessIcon />
-                  </Avatar>
-                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
-                </ListItem>
-                <ListItem>
-                  <Avatar>
-                    <BeachAccessIcon />
-                  </Avatar>
-                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
-                </ListItem>
+                {data.chats.map((item, index) => (
+                    <ListItem key={index}>
+                      <Avatar className={classes.orangeAvatar}>
+                        {
+                          item.title.split(' ').map(e => e.slice(0, 1)).join('')
+                        }
+                      </Avatar>
+                      <ListItemText primary={item.title} secondary="Jan 9, 2014" />
+                    </ListItem>
+                  )
+                )}
               </List>
             </div>
 
+            {/* Implemented bottom nabigation */}
             <BottomNavigation
               value={this.state.value}
               onChange={this.handleChange}
               showLabels
               className={classes.navBottom}
-              
             >
               <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
               <BottomNavigationAction label="Explore" icon={<Explore />} />
