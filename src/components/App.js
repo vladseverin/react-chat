@@ -7,7 +7,6 @@ import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer'; //enabling sidebar
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider'; 
 
 import Input from 'material-ui/Input'; //enabling the search bar
@@ -20,6 +19,9 @@ import RestoreIcon from '@material-ui/icons/Restore';
 import Explore from '@material-ui/icons/Explore';
 
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'; //color theme scheme
+
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 
 
 
@@ -47,7 +49,9 @@ const styles = theme => ({
     width: '100%',
   },
   appBar: {
-    width: `calc(100% - 320px)`,
+    width: 'calc(100% - 320px)',
+    position: 'fixed',
+    marginLeft: '320px',
   },
   'appBar-left': {
     marginLeft: 320,
@@ -68,6 +72,7 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
+    paddingTop: 64,
   },
 
   container: {
@@ -93,10 +98,48 @@ const styles = theme => ({
     color: '#fff',
     backgroundColor: '#F44336',
   },
+
+  senderIco: {
+    color: '#fff',
+    backgroundColor: '#F44336',
+  },
+
+  contentChat: {
+    width: '100%',
+    height: '100%',
+    overflowX: 'hidden',
+    paddingTop: 24,
+    paddingBottom: '120px',
+  },
+
+  someoneSentMessageBlock: {
+    display: 'flex',
+    padding: '8px 24px',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+
+  messageBlock: {
+    padding: 8,
+    maxWidth: '70%',
+    minWidth: '10%',
+    marginLeft: 16,
+    borderRadius: 3,
+  },
+
+  senderName: {
+    color: '#F44336',
+    fontSize: '0.75rem', 
+  },
+
+  dispatchTime: {
+    color: '#000000',
+    fontSize: '0.75rem', 
+    opacity: '0.54',
+  }
 });
 
 class App extends React.Component {
-
   state = {
     value: 0,
   };
@@ -134,7 +177,7 @@ class App extends React.Component {
             {/* Implemented search bar */}
             <div className={classNames(classes.toolbar, classes.customToolbar)} >
               <Input
-                placeholder="Placeholder"
+                placeholder="Search chat..."
                 className={classes.input}
                 inputProps={{
                   'aria-label': 'Description',
@@ -172,10 +215,34 @@ class App extends React.Component {
             </BottomNavigation>
 
           </Drawer>
-
+          
+          {/* Implemented chats list */}
           <main className={classes.content}>
-            <div className={classes.toolbar} />
-            <Typography>{'You think water moves fast? You should see ice.'}</Typography>
+            <div className={classes.contentChat}>
+              {
+                data.messages.map((item, index) => (
+                  <div key={index} className={classes.someoneSentMessageBlock}>
+                      <Avatar className={classes.senderIco}>
+                        {
+                          item.sender.split(' ').map(e => e.slice(0, 1)).join('').toUpperCase()
+                        }
+                      </Avatar>
+                      <Paper className={classes.messageBlock} elevation={4}>
+                        <Typography className={classes.senderName} component="span">
+                          {item.sender}
+                        </Typography>
+                        <Typography className={classes.messageContent} component="p">
+                          {item.content}
+                        </Typography>
+                        <Typography className={classes.dispatchTime} component="span">
+                          2 days ago
+                        </Typography>
+                      </Paper>
+                    </div> 
+                  )
+                )
+              }
+            </div>
           </main>
           
         </div>
