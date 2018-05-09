@@ -233,7 +233,7 @@ class App extends React.Component {
                     <ListItem key={index}>
                       <Avatar className={classes.orangeAvatar}>
                         {
-                          item.title.split(' ').map(e => e.slice(0, 1)).join('')
+                          item.title.split(' ', 2).map(e => e.slice(0, 1)).join('').toUpperCase()
                         }
                       </Avatar>
                       <ListItemText primary={item.title} secondary="Jan 9, 2014" />
@@ -269,12 +269,13 @@ class App extends React.Component {
                   </Typography>
                 </Typography>
               </div>
+
               {
                 data.messages.map((item, index) => (
                   <div key={index} className={item.sender === "me" ? classes.meSentMessageBlock : classes.someoneSentMessageBlock}>
                       <Avatar className={classes.senderAva}>
                         {
-                          item.sender.split(' ').map(e => e.slice(0, 1)).join('').toUpperCase()
+                          item.sender.split(' ', 1).map(e => e.slice(0, 1)).join('').toUpperCase()
                         }
                       </Avatar>
                     <Paper className={item.sender === "me" ? classes.meMessageBlock : classes.messageBlock} elevation={4}>
@@ -302,6 +303,7 @@ class App extends React.Component {
                   </Typography>
                 </Typography>
               </div>
+
             </div>
 
             {/*Implemented send message block */}
@@ -313,6 +315,7 @@ class App extends React.Component {
                 />
               </Paper>
             </div>
+
           </main>
           
         </div>
