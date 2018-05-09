@@ -99,7 +99,7 @@ const styles = theme => ({
     backgroundColor: '#F44336',
   },
 
-  senderIco: {
+  senderAva: {
     color: '#fff',
     backgroundColor: '#F44336',
   },
@@ -117,6 +117,27 @@ const styles = theme => ({
     padding: '8px 24px',
     alignItems: 'center',
     justifyContent: 'flex-start',
+  },
+
+  meSentMessageBlock: {
+    display: 'flex',
+    padding: '8px 24px',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+
+  meSenderAva: {
+    color: '#fff',
+    backgroundColor: '#F44336',
+  },
+
+  meMessageBlock: {
+    padding: 8,
+    maxWidth: '70%',
+    minWidth: '10%',
+    borderRadius: 3,
+    marginRight: 16,
+    order: -1,
   },
 
   messageBlock: {
@@ -238,6 +259,7 @@ class App extends React.Component {
           {/* Implemented chats list */}
           <main className={classes.content}>
             <div className={classes.contentChat}>
+
               {/*Implemented history block */}
               <div className={classes.historyBlock} >
                 <Typography component="p">
@@ -249,13 +271,13 @@ class App extends React.Component {
               </div>
               {
                 data.messages.map((item, index) => (
-                  <div key={index} className={classes.someoneSentMessageBlock}>
-                      <Avatar className={classes.senderIco}>
+                  <div key={index} className={item.sender === "me" ? classes.meSentMessageBlock : classes.someoneSentMessageBlock}>
+                      <Avatar className={classes.senderAva}>
                         {
                           item.sender.split(' ').map(e => e.slice(0, 1)).join('').toUpperCase()
                         }
                       </Avatar>
-                      <Paper className={classes.messageBlock} elevation={4}>
+                    <Paper className={item.sender === "me" ? classes.meMessageBlock : classes.messageBlock} elevation={4}>
                         <Typography className={classes.senderName} component="span">
                           {item.sender}
                         </Typography>
@@ -270,6 +292,7 @@ class App extends React.Component {
                   )
                 )
               }
+
               {/*Implemented history block */}
               <div className={classes.historyBlock} >
                 <Typography component="p">
@@ -279,8 +302,9 @@ class App extends React.Component {
                   </Typography>
                 </Typography>
               </div>
-
             </div>
+
+            {/*Implemented send message block */}
             <div className={classes.inputMessage}>
               <Paper className ={classes.paperInputMessage}>
                 <Input
