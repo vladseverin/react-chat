@@ -1,11 +1,13 @@
 import React from 'react';
+
+import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
-import Drawer from 'material-ui/Drawer';
+
+import Drawer from 'material-ui/Drawer'; //enabling sidebar
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-
-import Divider from 'material-ui/Divider'; //enabling sidebar
+import Divider from 'material-ui/Divider'; 
 
 import Input from 'material-ui/Input'; //enabling the search bar
 
@@ -19,8 +21,22 @@ import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavi
 import RestoreIcon from '@material-ui/icons/Restore';
 import Explore from '@material-ui/icons/Explore';
 
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'; //color theme scheme
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#E57373',
+      main: '#F44336',
+      dark: '#D32F2F',
+      contrastText: '#fff',
+    },
+  },
+});
+
 const styles = theme => ({
-  root: {
+  navBottom: {
     flexGrow: 1,
   },
   appFrame: {
@@ -75,118 +91,138 @@ const styles = theme => ({
   },
 });
 
-class PermanentDrawer extends React.Component {
+class App extends React.Component {
+
+  state = {
+    value: 0,
+  };
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
   render() {
     const { classes } = this.props;
-    
+
     return (
-      <div className={classes.appFrame}>
-        <AppBar
-          position="absolute"
-          className={(classes.appBar)}
-        >
-          <Toolbar>
-            <Typography variant="title" color="inherit" noWrap>
-              DogeCodes React Chat
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <div className={[classes.toolbar, classes.customToolbar].join(' ')} >
-            <Input
-              placeholder="Search chats..."
-              className={classes.input}
-              inputProps={{
-                'aria-label': 'Description',
-              }}
-            />
-          </div>
-          <Divider />
+      <MuiThemeProvider theme={theme}>
+        <div className={classes.appFrame}>
+          
+          <AppBar
+            position="absolute"
+            className={(classes.appBar)}
+          >
+            <Toolbar>
+              <Typography variant="title" color="inherit" noWrap>
+                DogeCodes React Chat
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            variant="permanent"
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            <div className={classNames(classes.toolbar, classes.customToolbar)} >
+              <Input
+                placeholder="Placeholder"
+                className={classes.input}
+                inputProps={{
+                  'aria-label': 'Description',
+                }}
+              />
+            </div>
+            <Divider />
 
-          <div className={classes.asideList}>
-            <List>
-              <ListItem>
-                <Avatar>
-                  <ImageIcon />
-                </Avatar>
-                <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-              </ListItem>
-              <ListItem>
-                <Avatar>
-                  <WorkIcon />
-                </Avatar>
-                <ListItemText primary="Work" secondary="Jan 7, 2014" />
-              </ListItem>
-              <ListItem>
-                <Avatar>
-                  <BeachAccessIcon />
-                </Avatar>
-                <ListItemText primary="Vacation" secondary="July 20, 2014" />
-              </ListItem>
-              <ListItem>
-                <Avatar>
-                  <BeachAccessIcon />
-                </Avatar>
-                <ListItemText primary="Vacation" secondary="July 20, 2014" />
-              </ListItem>
-              <ListItem>
-                <Avatar>
-                  <BeachAccessIcon />
-                </Avatar>
-                <ListItemText primary="Vacation" secondary="July 20, 2014" />
-              </ListItem>
-              <ListItem>
-                <Avatar>
-                  <BeachAccessIcon />
-                </Avatar>
-                <ListItemText primary="Vacation" secondary="July 20, 2014" />
-              </ListItem>
-              <ListItem>
-                <Avatar>
-                  <BeachAccessIcon />
-                </Avatar>
-                <ListItemText primary="Vacation" secondary="July 20, 2014" />
-              </ListItem>
-              <ListItem>
-                <Avatar>
-                  <BeachAccessIcon />
-                </Avatar>
-                <ListItemText primary="Vacation" secondary="July 20, 2014" />
-              </ListItem>
-              <ListItem>
-                <Avatar>
-                  <BeachAccessIcon />
-                </Avatar>
-                <ListItemText primary="Vacation" secondary="July 20, 2014" />
-              </ListItem>
-              <ListItem>
-                <Avatar>
-                  <BeachAccessIcon />
-                </Avatar>
-                <ListItemText primary="Vacation" secondary="July 20, 2014" />
-              </ListItem>
-            </List>
-          </div>
+            <div className={classes.asideList}>
+              <List>
+                <ListItem>
+                  <Avatar>
+                    <ImageIcon />
+                  </Avatar>
+                  <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+                </ListItem>
+                <ListItem>
+                  <Avatar>
+                    <WorkIcon />
+                  </Avatar>
+                  <ListItemText primary="Work" secondary="Jan 7, 2014" />
+                </ListItem>
+                <ListItem>
+                  <Avatar>
+                    <BeachAccessIcon />
+                  </Avatar>
+                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
+                </ListItem>
+                <ListItem>
+                  <Avatar>
+                    <BeachAccessIcon />
+                  </Avatar>
+                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
+                </ListItem>
+                <ListItem>
+                  <Avatar>
+                    <BeachAccessIcon />
+                  </Avatar>
+                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
+                </ListItem>
+                <ListItem>
+                  <Avatar>
+                    <BeachAccessIcon />
+                  </Avatar>
+                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
+                </ListItem>
+                <ListItem>
+                  <Avatar>
+                    <BeachAccessIcon />
+                  </Avatar>
+                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
+                </ListItem>
+                <ListItem>
+                  <Avatar>
+                    <BeachAccessIcon />
+                  </Avatar>
+                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
+                </ListItem>
+                <ListItem>
+                  <Avatar>
+                    <BeachAccessIcon />
+                  </Avatar>
+                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
+                </ListItem>
+                <ListItem>
+                  <Avatar>
+                    <BeachAccessIcon />
+                  </Avatar>
+                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
+                </ListItem>
+              </List>
+            </div>
 
-          <BottomNavigation showLabels>
-            <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
-            <BottomNavigationAction label="Explore" icon={<Explore />} />
-          </BottomNavigation>
+            <BottomNavigation
+              value={this.state.value}
+              onChange={this.handleChange}
+              showLabels
+              className={classes.navBottom}
+              
+            >
+              <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
+              <BottomNavigationAction label="Explore" icon={<Explore />} />
+            </BottomNavigation>
 
-        </Drawer>
+          </Drawer>
 
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Typography>{'You think water moves fast? You should see ice.'}</Typography>
-        </main>
-      </div>
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            <Typography>{'You think water moves fast? You should see ice.'}</Typography>
+          </main>
+          
+        </div>
+      </MuiThemeProvider>
+      
     );
   }
 }
 
-export default withStyles(styles)(PermanentDrawer);
+export default withStyles(styles)(App);
