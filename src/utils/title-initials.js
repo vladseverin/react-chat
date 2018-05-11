@@ -10,5 +10,4 @@ export default function titleInitials(title) {
     console.error(e);
     return '🦄';
   }
-
 }

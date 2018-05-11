@@ -29,19 +29,14 @@ const styles = theme => ({
   }
 });
 
-class App extends React.Component {
-  render() {
-    const { classes } = this.props;
-    return (
-      <MuiThemeProvider theme={theme}>
-        <div className={classes.root}>       
-          <ChatHeader />
-          <Sidebar chats={chats}/>
-          <Chat messages={messages}/>
-        </div>
-      </MuiThemeProvider>
-    );
-  }
-}
+const App = ({ classes }) => ( 
+  <MuiThemeProvider theme={theme}>
+    <div className={classes.root}>       
+      <ChatHeader />
+      <Sidebar chats={chats}/>
+      <Chat messages={messages}/>
+    </div>
+  </MuiThemeProvider>
+);
 
 export default withStyles(styles)(App);
