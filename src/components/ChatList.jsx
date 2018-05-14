@@ -11,10 +11,6 @@ const styles = theme => ({
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
-  colorAvatar: {
-    color: '#fff',
-    backgroundColor: '#F44336',
-  },
 });
 
 const ChatList = ({ classes, chats }) => (
