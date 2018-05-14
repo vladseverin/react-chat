@@ -17,15 +17,18 @@ const style = theme => ({
   },
 });
 
-const MessageInput = ({ classes }) => (
-  <div className={classes.messageInputWrapper}>
-    <Paper className={classes.messageInput}>
-      <Input
-        placeholder="Type your message..."
-        fullWidth
-      />
-    </Paper>
-  </div>
-);
+class MessageInput extends React.Component {
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div className={classes.messageInputWrapper}>
+        <Paper className={classes.messageInput}>
+          <Input fullWidth placeholder="Type your message..." />
+        </Paper>
+      </div>
+    );
+  }
+}
 
 export default withStyles(style)(MessageInput);

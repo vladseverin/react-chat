@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 
 import MessageInput from './MessageInput.jsx';
-import MessagesList from './MessagesList.jsx';
+import ChatMessageList from './ChatMessageList.jsx';
 
 const styles = theme => ({
   chatLayout: {
@@ -14,14 +14,11 @@ const styles = theme => ({
     width: '100%',
     overflow: 'hidden',
   },
-  entryField: {
-    width: '100%',
-  },
 });
 
 const Chat = ({ classes, messages }) => (
   <main className={classes.chatLayout}>
-    <MessagesList messages={messages} />
+    <ChatMessageList messages={messages} />
     <MessageInput />
   </main>
 );

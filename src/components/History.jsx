@@ -21,7 +21,7 @@ const History = ({ classes }) => (
     <Typography variant="caption">
       <span className={classes.colorName} >
         Severin Vladislav
-              </span> left
+      </span> left
       <Typography variant="caption">
         2 days ago
       </Typography>

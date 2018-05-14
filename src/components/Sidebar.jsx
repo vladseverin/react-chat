@@ -4,7 +4,7 @@ import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 
 import SearchBar from './SearchBar.jsx';
-import ChatsList from './ChatsList.jsx';
+import ChatList from './ChatList.jsx';
 import ButtonAdd from './ButtonAdd.jsx';
 import BottomNav from './BottomNav.jsx';
 
@@ -35,7 +35,7 @@ const Sidebar = ({ classes, chats }) => (
       <SearchBar />
     </div>
     <Divider />
-    <ChatsList chats={chats} /> 
+    <ChatList chats={chats} /> 
     <ButtonAdd />
     <BottomNav />
   </Drawer>
