@@ -5,14 +5,16 @@ import Sidebar from './Sidebar.jsx';
 import ChatHeader from './ChatHeader.jsx';
 import Chat from './Chat.jsx';
 import { chats, messages } from '../data.json';
+import red from 'material-ui/colors/red';
+import grey from 'material-ui/colors/grey';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: '#E57373',
-      main: '#F44336',
-      dark: '#D32F2F',
-      contrastText: '#fff'
+      light: red[200],
+      main: red[500],
+      dark: red[700],
+      contrastText: grey[50],
     }
   }
 });
