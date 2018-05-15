@@ -13,6 +13,7 @@ const styles = theme => ({
     height: '100%',
     width: '100%',
     overflow: 'hidden',
+    minWidth:'320px',
   },
 });
 
