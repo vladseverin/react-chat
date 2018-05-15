@@ -1,4 +1,4 @@
-import red from 'material-ui/colors/red';
+import red from '@material-ui/core/colors/red';
 
 const colors = [
   red[400], red[500], red[600], red[700], red[800]

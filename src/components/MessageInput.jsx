@@ -1,7 +1,7 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import Input from 'material-ui/Input';
-import Paper from 'material-ui/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import Paper from '@material-ui/core/Paper';
 
 const style = theme => ({
   messageInputWrapper: {

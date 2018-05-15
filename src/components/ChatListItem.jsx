@@ -1,6 +1,7 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import { ListItem, ListItemText } from 'material-ui/List';
+import { withStyles } from '@material-ui/core/styles';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from './Avatar.jsx';
 
 const styles = theme => ({

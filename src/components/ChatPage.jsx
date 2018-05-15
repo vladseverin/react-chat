@@ -1,12 +1,12 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Sidebar from './Sidebar.jsx';
 import ChatHeader from './ChatHeader.jsx';
 import Chat from './Chat.jsx';
 import { chats, messages } from '../data.json';
-import red from 'material-ui/colors/red';
-import grey from 'material-ui/colors/grey';
+import red from '@material-ui/core/colors/red';
+import grey from '@material-ui/core/colors/grey';
 
 const theme = createMuiTheme({
   palette: {
