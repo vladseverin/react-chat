@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -30,7 +31,7 @@ const styles = theme => ({
 
 });
 
-class ChatHeader extends React.Component {
+class WelcomePage extends React.Component {
   state = {
     activeTab: 0,
   };
@@ -40,8 +41,15 @@ class ChatHeader extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { activeTab } = this.state
+    const { classes, signup, login, isAuthenticated } = this.props;
+    const { activeTab } = this.state;
+
+    if (isAuthenticated) {
+      return (
+        <Redirect to='/chat' />
+      );
+    }
+
     return (
       <div className={classes.welcomePage}>
         <AppBar className={classes.appBar} >
@@ -67,8 +75,8 @@ class ChatHeader extends React.Component {
           </AppBar>
 
           <Paper elevation={4}>
-            {activeTab === 0 && <LoginForm />}
-            {activeTab === 1 && <SignupForm />}
+            {activeTab === 0 && <LoginForm onSubmit={login} />}
+            {activeTab === 1 && <SignupForm onSubmit={signup} />}
           </Paper>
         </main>
 
@@ -77,4 +85,4 @@ class ChatHeader extends React.Component {
   }
 }
 
-export default withStyles(styles)(ChatHeader);
+export default withStyles(styles)(WelcomePage);

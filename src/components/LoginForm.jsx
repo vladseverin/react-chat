@@ -51,7 +51,7 @@ class LoginForm extends Component {
 
     const { username, password } = this.state;
 
-    console.log('Loggin:', username.value, password.value);
+    this.props.onSubmit(username.value, password.value);
   };
 
   render() {
