@@ -9,11 +9,17 @@ const styles = theme => ({
     width: '100%',
     height: '100%',
     paddingTop: theme.spacing.unit * 3,
-    paddingBottom: '120px',
-  }
+    paddingBottom: theme.spacing.unit * 15,
+  },
 });
 
 class CHatMessageList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.messagesWrapper = React.createRef();
+  }
+
   componentDidMount() {
     this.scrollDownHistory();
   }
@@ -23,7 +29,7 @@ class CHatMessageList extends React.Component {
   }
 
   scrollDownHistory() {
-    const messagesWrapper = this.refs.messagesWrapper;
+    const messagesWrapper = this.messagesWrapper.current;
     if (messagesWrapper) {
       messagesWrapper.scrollTop = messagesWrapper.scrollHeight;
     }
@@ -32,7 +38,7 @@ class CHatMessageList extends React.Component {
   render() {
     const { classes, messages } = this.props;
     return (
-      <div className={classes.messagesWrapper} ref="messagesWrapper">
+      <div className={classes.messagesWrapper} ref={this.messagesWrapper}>
         {messages && messages.map((message, index) => (
           <ChatMessage key={index} {...message} />
         ))}
