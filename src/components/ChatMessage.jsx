@@ -37,14 +37,16 @@ const ChatMessage = ({ classes, ...message }) => {
     </Avatar>
   );
 
+  const IsMessageFromMe = message.sender === "me";
+
   return (
-    <div className={message.sender === "me" ?
-      classNames(classes.messageWrapperFromMe, classes.messageWrapper) :
-      classes.messageWrapper}>
+    <div className={IsMessageFromMe 
+      ? classNames(classes.messageWrapperFromMe, classes.messageWrapper) 
+      : classes.messageWrapper}>
       {userAvatar}
-      <Paper className={message.sender === "me" ?
-        classNames(classes.messageFromMe, classes.message) :
-        classes.message}>
+      <Paper className={IsMessageFromMe 
+        ? classNames(classes.messageFromMe, classes.message) 
+        : classes.message}>
         <Typography variant="caption" 
           style={{ color: getColor(message.sender)}}
         >
