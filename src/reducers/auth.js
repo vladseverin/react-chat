@@ -11,7 +11,6 @@ const initialState = {
   user: null,
   token,
 };
-
 export default function auth(state = initialState, action) {
   switch (action.type) {
     case SIGNUP_SUCCESS:

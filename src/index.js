@@ -5,8 +5,14 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import 'typeface-roboto';
 
-ReactDOM.render(
-  <App />, 
-  document.getElementById('root')
-);
+const rootEL = document.getElementById('root');
+
+ReactDOM.render(<App />,  rootEL);
+
+if (module.hot) {
+  module.hot.accept('./components/App', () => {
+    ReactDOM.render(<App />, rootEL)
+  })
+}
+
 registerServiceWorker();
