@@ -106,10 +106,15 @@ export function logout() {
         }
         throw new Error(json.message);
       })
-      .then(json => dispatch({
-        type: types.LOGOUT_SUCCESS,
-        payload: json
-      }))
+      .then(json => {
+
+        localStorage.removeItem('token');
+
+        dispatch({
+          type: types.LOGOUT_SUCCESS,
+          payload: json
+        })
+      })
       .catch(reason => dispatch({
         type: types.LOGOUT_FAILURE,
         payload: reason,
