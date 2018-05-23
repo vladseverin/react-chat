@@ -91,7 +91,29 @@ export function logout() {
   return (dispatch) => {
     dispatch({
       type: types.LOGOUT_REQUEST
-    })
+    });
+
+    return fetch('http://localhost:9099/v1//logout', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    }).then(response => response.json())
+      .then(json => {
+        if (json.success) {
+          return json;
+        }
+        throw new Error(json.message);
+      })
+      .then(json => dispatch({
+        type: types.LOGOUT_SUCCESS,
+        payload: json
+      }))
+      .catch(reason => dispatch({
+        type: types.LOGOUT_FAILURE,
+        payload: reason,
+      }));
   };
 }
 
