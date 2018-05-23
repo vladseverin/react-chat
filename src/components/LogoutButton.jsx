@@ -18,8 +18,12 @@ class LogoutButton extends Component {
     this.setState({ anchorEl: event.currentTarget });
   };
 
-  handleClose = () => {
+  handleMenuClick = () => {
     this.props.logout();
+    this.handleClose();
+  };
+
+  handleClose = () => {
     this.setState({ anchorEl: null });
   };
 
@@ -47,7 +51,7 @@ class LogoutButton extends Component {
           open={open}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose}>LogOut</MenuItem>
+          <MenuItem onClick={this.handleMenuClick}>LogOut</MenuItem>
         </Menu>
       </div>
     );
