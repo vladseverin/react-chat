@@ -1,4 +1,4 @@
-import * as types from '../constants';
+import * as types from '../constants/auth';
 import callApi from '../utils/call-api';
 
 export function signup(username, password) {
