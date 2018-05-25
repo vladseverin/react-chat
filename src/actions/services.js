@@ -1,7 +1,7 @@
 import history from '../utils/history';
 import * as types from '../constants';
 
-export default function redirect(to) { 
+export function redirect(to) { 
   return (dispatch) => {
     history.push(`${process.env.PUBLICK_URL}/${to}`);
     dispatch({

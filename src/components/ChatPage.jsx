@@ -4,7 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Sidebar from './Sidebar.jsx';
 import ChatHeader from './ChatHeader.jsx';
 import Chat from './Chat.jsx';
-import { chats, messages } from '../data.json';
+
+import { messages } from '../data.json';
 
 
 const styles = theme => ({
@@ -20,8 +21,19 @@ const styles = theme => ({
 });
 
 class ChatPage extends React.Component {
+  componentDidMount(){
+    const { fetchAllChats, fetchMyChats } = this.props;
+
+    Promise.all([ 
+      fetchMyChats(),
+      fetchAllChats(), 
+    ]);
+  }
+
   render() {
-    const { classes, isAuthenticated, logout } = this.props;
+    const { classes, isAuthenticated, logout, chats } = this.props;
+
+    console.log(chats);
 
     if (!isAuthenticated) {
       return (

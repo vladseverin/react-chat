@@ -28,8 +28,8 @@ export default function configureStore() {
 
     if (module.hot) {
       module.hot.accept('../reducers', () => {
-        store.replaceReducer(rootReducer)
-      })
+        store.replaceReducer(rootReducer);
+      });
     }
 
     return store;

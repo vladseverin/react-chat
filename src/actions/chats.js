@@ -1,13 +1,13 @@
 import * as types from '../constants/chats';
 import callApi from '../utils/call-api';
-import redirect from './services';
+import { redirect } from './services';
 
 export function fetchMyChats() {
  return (dispatch, getState) => {
    const { token } = getState().auth;
    
    dispatch({
-     types: types.FETCH_MY_CHATS_REQUEST
+     type: types.FETCH_MY_CHATS_REQUEST
    });
 
    return callApi('/chats/my', token)
@@ -27,7 +27,7 @@ export function fetchAllChats() {
    const { token } = getState().auth;
    
    dispatch({
-     types: types.FETCH_ALL_CHATS_REQUEST
+     type: types.FETCH_ALL_CHATS_REQUEST
    });
 
    return callApi('/chats', token)
@@ -47,7 +47,7 @@ export function fetchChat(chatId) {
     const { token } = getState().auth;
     
     dispatch({
-      types: types.FETCH_CHAT_REQUEST
+      type: types.FETCH_CHAT_REQUEST
     });
 
     return callApi(`/chats/${chatId}`, token)
@@ -84,4 +84,28 @@ export function setActiveChat(chatId) {
         })
       })
  };
+}
+
+export function createChat() {
+  return (dispatch) => {
+    //...
+  };
+}
+
+export function joinChat() {
+  return (dispatch) => {
+    //...
+  };
+}
+
+export function leaveChat() {
+  return (dispatch) => {
+    //...
+  };
+}
+
+export function deleteChat() {
+  return (dispatch) => {
+    //...
+  };
 }
