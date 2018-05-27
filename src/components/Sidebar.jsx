@@ -80,7 +80,10 @@ class Sidebar extends React.Component {
           />
         </div>
         <Divider />
-        <ChatList chats={this.filterChats(activeTab === 0 ? chats.my : chats.all)} /> 
+        <ChatList 
+          chats={this.filterChats(activeTab === 0 ? chats.my : chats.all)} 
+          activeChat={chats.active}
+        /> 
         <NewChatButton onClick={createChat}/>
         <BottomNavigation showLabels value={activeTab} onChange={this.handleTabChange}>
           <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
