@@ -12,10 +12,10 @@ const styles = theme => ({
   }
 });
 
-const ButtonAdd = ({ classes }) => (
+const NewChatButton = ({ classes }) => (
     <Button variant="fab" color="primary" aria-label="add" className={classes.newChatButton}>
       <AddIcon />
     </Button>
 );
 
-export default withStyles(styles)(ButtonAdd);
+export default withStyles(styles)(NewChatButton);

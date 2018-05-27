@@ -11,13 +11,17 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
+import red from '@material-ui/core/colors/red';
+
 const styles = theme => ({
   modalWrapper: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    
   },
   modal: {
+    outlineColor: red[500],
     width: '30%',
     minWidth: '300px',
     padding: theme.spacing.unit * 3
