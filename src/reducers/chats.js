@@ -28,7 +28,7 @@ const allIds = (state = initialState.allIds, action) => {
     case types.FETCH_ALL_CHATS_SUCCESS:
       return action.payload.chats.map(getChatId);
     case types.CREATE_CHAT_SUCCESS:
-      return [...state, getChatId(action.payload.chats)];
+      return [...state, getChatId(action.payload.chat)];
     case types.DELETE_CHAT_SUCCESS:
       return state.filter(
         chatId => chatId !== getChatId(action.payload.chat)

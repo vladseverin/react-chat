@@ -41,6 +41,10 @@ class Sidebar extends React.Component {
   filterChats = (chats) => {
     const { searchValue } = this.state;
 
+    // console.log(chats.map(chat => typeof chat.title));
+
+    // if (chats.map(chat => typeof chat.title === undefined) ) return;
+
     return chats
       .filter(chat => chat.title
         .toLowerCase()
@@ -58,7 +62,7 @@ class Sidebar extends React.Component {
   }
   
   render () {
-    const { classes, chats } = this.props;
+    const { classes, chats, createChat } = this.props;
     const { activeTab, searchValue } = this.state;
 
     return (
@@ -77,7 +81,7 @@ class Sidebar extends React.Component {
         </div>
         <Divider />
         <ChatList chats={this.filterChats(activeTab === 0 ? chats.my : chats.all)} /> 
-        <NewChatButton />
+        <NewChatButton onClick={createChat}/>
         <BottomNavigation showLabels value={activeTab} onChange={this.handleTabChange}>
           <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
           <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />

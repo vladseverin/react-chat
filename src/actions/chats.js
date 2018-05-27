@@ -87,6 +87,34 @@ export function setActiveChat(chatId) {
 }
 
 //my implementation
+// export function createChat(title) {
+//   return (dispatch, getState) => {
+//     const { token } = getState().auth;
+
+//     dispatch({
+//       type: types.CREATE_CHAT_REQUEST,
+//       payload: { title }
+//     });
+
+//     return callApi('/chats', token, { method: 'POST' }, {
+//       data: { title }
+//     })
+//       .then(({ chat }) => {
+//         dispatch({
+//           type: types.CREATE_CHAT_SUCCESS,
+//           payload: { chat }
+//         });
+
+//         dispatch(redirect(`/chat/${chat.id}`));
+
+//         return chat;
+//       })
+//       .catch(reason => dispatch({
+//         type: types.CREATE_CHAT_FAILURE,
+//         payload: reason,
+//       }));
+//   };
+// }
 export function createChat(title) {
   return (dispatch, getState) => {
     const { token } = getState().auth;
@@ -94,7 +122,7 @@ export function createChat(title) {
     dispatch({
       type: types.CREATE_CHAT_REQUEST,
       payload: { title }
-    });
+    })
 
     return callApi('/chats', token, { method: 'POST' }, {
       data: { title }
@@ -102,10 +130,10 @@ export function createChat(title) {
       .then(({ chat }) => {
         dispatch({
           type: types.CREATE_CHAT_SUCCESS,
-          payload: { chat }
+          payload: { chat },
         });
 
-        dispatch(redirect(`/chat/${chat.id}`));
+        dispatch(redirect(`/chat/${chat._id}`));
 
         return chat;
       })
