@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import loggerMiddleWare from 'redux-logger';
 import rootReducer from '../reducers';
+import { editUser } from '../actions/users';
 
 export default function configureStore() {
   if (process.env.NODE_ENV === 'production') {
@@ -34,5 +35,5 @@ export default function configureStore() {
 
     return store;
   }
-
 }
+

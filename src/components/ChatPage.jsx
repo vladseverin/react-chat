@@ -52,9 +52,25 @@ class ChatPage extends React.Component {
 
     return(
      <div className={classes.root}>       
-       <ChatHeader logout={logout} />
-       <Sidebar chats={chats}/>
-       <Chat messages={messages}/>
+        <ChatHeader 
+          logout={logout} 
+          activeUser={activeUser}
+          activeChat={chats.active}
+          leaveChat={leaveChat}
+          deleteChat={deleteChat}
+          editUser={editUser}
+        />
+        <Sidebar 
+          chats={chats}
+          createChat={createChat}
+        />
+        <Chat 
+          messages={messages}
+          activeChat={chats.active}
+          activeUser={activeUser}
+          sendMessage={sendMessage}
+          joinChat={joinChat}
+        />
      </div>
     );
   }

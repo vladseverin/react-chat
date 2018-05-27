@@ -1,7 +1,7 @@
 import * as types from '../constants/users';
 import callApi from '../utils/call-api';
 
-export function editUser(username, firstName, lastName, city) {
+export function editUser({ username, firstName, lastName, city }) {
   return (dispatch, getState) => {
     const { token } = getState().auth;
 
@@ -17,9 +17,9 @@ export function editUser(username, firstName, lastName, city) {
         city
       }
     })
-      .then(json => dispatch({
+      .then(data => dispatch({
         type: types.EDIT_USER_SUCCESS,
-        payload: json
+        payload: data
       }))
       .catch(reason => dispatch({
         type: types.EDIT_USER_FAILURE,
