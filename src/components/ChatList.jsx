@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import ChatListItem from './ChatListItem.jsx';
 
 
+
 const styles = theme => ({
   chatsList: {
     height: 'calc(100% - 56px)',

@@ -1,12 +1,12 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Avatar from './Avatar';
-import ChatMenu from './ChatMenu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid'
+import Avatar from './Avatar.jsx';
 import UserMenu from './UserMenu.jsx';
-import Grid from '@material-ui/core/Grid';
+import ChatMenu from './ChatMenu.jsx';
 
 const styles = theme => ({
   appBar: {
@@ -14,10 +14,9 @@ const styles = theme => ({
     position: 'fixed',
   },
   appBarTitle: {
-    flex: 1,
     marginLeft: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
     color: theme.palette.secondary.contrastText,
+    whiteSpace: 'nowrap',
   },
 });
 
@@ -31,8 +30,7 @@ class ChatHeader extends React.Component {
       <AppBar className={classes.appBar} >
         <Toolbar>
           <Grid container spacing={24} direction='row' justify='space-between' alignItems='center' wrap='nowrap'>
-            <Grid item>
-
+            <Grid container direction='row' wrap='nowrap' justify='flex-start' alignItems='center'>
               {activeChat ? (
                 <React.Fragment>
                   <Avatar colorFrom={activeChat._id}>
@@ -40,12 +38,12 @@ class ChatHeader extends React.Component {
                   </Avatar>
                   <Typography variant="title" className={classes.appBarTitle}>
                     {activeChat.title}
-                    <ChatMenu
-                      activeUser={activeUser}
-                      onLeaveClick={() => leaveChat(activeChat._id)}
-                      onDeleteClick={() => deleteChat(activeChat._id)}
-                    />
                   </Typography>
+                  <ChatMenu
+                    activeUser={activeUser}
+                    onLeaveClick={() => leaveChat(activeChat._id)}
+                    onDeleteClick={() => deleteChat(activeChat._id)}
+                  />
                 </React.Fragment>
               ) : (
               <Typography variant="title" color="inherit" noWrap>

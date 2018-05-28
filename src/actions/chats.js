@@ -59,10 +59,14 @@ export function fetchChat(chatId) {
 
         return data;
       })
-      .catch(reason => dispatch({
-        type: types.FETCH_CHAT_FAILURE,
-        payload: reason
-      }));
+      .catch(reason => {
+        dispatch({
+          type: types.FETCH_CHAT_FAILURE,
+          payload: reason
+        });
+
+        dispatch(redirect('/chat'));
+      });
   };
 }
 
@@ -81,8 +85,8 @@ export function setActiveChat(chatId) {
         dispatch({
           type: types.SET_ACTIVE_CHAT,
           payload: data
-        })
-      })
+        });
+      });
   };
 }
 

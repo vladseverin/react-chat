@@ -89,6 +89,7 @@ class UserMenu extends Component {
         <IconButton
           aria-owns={anchorEl ? 'simple-menu' : null}
           aria-haspopup="true"
+          disabled={disabled}
           onClick={this.handleClick}
           color="inherit"
         >

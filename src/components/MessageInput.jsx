@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 const style = theme => ({
   messageInputWrapper: {
@@ -18,13 +19,49 @@ const style = theme => ({
 });
 
 class MessageInput extends React.Component {
+  state = {
+    value: '',
+  }
+
+  handleValueChange = (event) => {
+    this.setState({
+      value: event.target.value,
+    });
+  }
+
+  handleKeyPress = (event) => {
+    const { value } = this.state;
+
+    if (event.key === 'Enter' && value) {
+      this.props.sendMessage(value);
+      this.setState({ value: '' });
+    }
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes, showJoinButton, onJoinButtonClick } = this.props;
 
     return (
       <div className={classes.messageInputWrapper}>
-        <Paper className={classes.messageInput}>
-          <Input fullWidth placeholder="Type your message..." />
+        <Paper className={classes.messageInput} elevation={6}>
+          {showJoinButton ? (
+            <Button
+              fullWidth
+              variant="raised"
+              color="primary"
+              onClick={onJoinButtonClick}
+            >
+              Join
+            </Button>
+          ) : (
+              <Input
+                fullWidth
+                placeholder="Type your message…"
+                value={this.state.value}
+                onChange={this.handleValueChange}
+                onKeyPress={this.handleKeyPress}
+              />
+            )}
         </Paper>
       </div>
     );

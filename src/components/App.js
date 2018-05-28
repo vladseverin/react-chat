@@ -29,8 +29,8 @@ const App = () => (
       <Router history={history}>
         <Switch>
           <Route exact path='/(welcome)?' component={WelcomePage} />
-          <PrivateRoute path='/chat' component={ChatPage} />
-          <Redirect to="/" />
+          <PrivateRoute path='/chat/:chatId?' component={ChatPage} />
+          <Redirect to='/' />
         </Switch>
       </Router>
     </MuiThemeProvider>

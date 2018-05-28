@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 import * as types from '../constants/chats';
 
 const initialState = {
   activeId: null,
   allIds: [],
   myIds: [],
-  byIds: {},
+  byIds: {}
 };
 
 const activeId = (state = initialState.activeId, action) => {
@@ -65,7 +65,7 @@ const byIds = (state = initialState.byIds, action) => {
           ...ids,
           [getChatId(chat)]: chat,
         }), {}),
-      };
+      }
     case types.CREATE_CHAT_SUCCESS:
       return {
         ...state,
@@ -84,8 +84,8 @@ export default combineReducers({
   activeId,
   allIds,
   myIds,
-  byIds
-});
+  byIds,
+})
 
 export const getChatId = (chat) => chat._id;
 export const getById = (state, id) => state.byIds[id];

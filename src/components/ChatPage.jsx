@@ -47,7 +47,7 @@ class ChatPage extends React.Component {
     const { 
       classes, logout, chats, activeUser,
       createChat, joinChat, leaveChat, deleteChat, sendMessage,
-      messages, editUser 
+      messages, editUser
     } = this.props;
 
     return(
