@@ -1,7 +1,7 @@
 import * as types from '../constants/users';
 import callApi from '../utils/call-api';
 
-export function editUser({ username, firstName, lastName, city }) {
+export function editUser({ username, firstName, lastName }) {
   return (dispatch, getState) => {
     const { token } = getState().auth;
 
@@ -14,7 +14,6 @@ export function editUser({ username, firstName, lastName, city }) {
         username, 
         firstName, 
         lastName,
-        city
       }
     })
       .then(data => dispatch({

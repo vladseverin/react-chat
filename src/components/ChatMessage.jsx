@@ -31,6 +31,11 @@ const styles = theme => ({
     backgroundColor: '#e6dcff',
     order: -1
   },
+  statusMessage : {
+    textAlign: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  }
 });
 
 const ChatMessage = ({ classes, content, sender, activeUser, createdAt, statusMessage  }) => {

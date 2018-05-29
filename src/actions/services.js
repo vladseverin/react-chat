@@ -3,7 +3,7 @@ import * as types from '../constants';
 
 export function redirect(to) { 
   return (dispatch) => {
-    history.push(`${process.env.PUBLICK_URL}/${to}`);
+    history.push(to);
     dispatch({
       type: types.REDIRECT,
       payload: { to },

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
@@ -8,7 +7,6 @@ import PrivateRoute from '../containers/PrivateRoute';
 import WelcomePage from '../containers/WelcomePage';
 import ChatPage from '../containers/ChatPage';
 import history from '../utils/history';
-import configureStore from '../store';
 
 const theme = createMuiTheme({
   palette: {
@@ -21,10 +19,7 @@ const theme = createMuiTheme({
   }
 });
 
-const store = configureStore();
-
 const App = () => (
-  <Provider store={store}> 
     <MuiThemeProvider theme={theme}>
       <Router history={history}>
         <Switch>
@@ -34,7 +29,6 @@ const App = () => (
         </Switch>
       </Router>
     </MuiThemeProvider>
-  </Provider>
 );
 
 
