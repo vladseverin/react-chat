@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 import MessageInput from './MessageInput.jsx';
 import ChatMessageList from './ChatMessageList.jsx';
@@ -13,6 +13,7 @@ const styles = theme => ({
     height: '100%',
     width: '100%',
     overflow: 'hidden',
+    minWidth:'320px',
   },
 });
 
