@@ -23,7 +23,7 @@ const styles = theme => ({
 class ChatHeader extends React.Component {
   render() {
     const { 
-      classes, logout, activeUser, activeChat, leaveChat, deleteChat, editUser 
+      classes, logout, activeUser, activeChat, leaveChat, deleteChat, editUser, isConnected, soketsDisconnect
     } = this.props; 
 
     return (
@@ -40,6 +40,7 @@ class ChatHeader extends React.Component {
                     {activeChat.title}
                   </Typography>
                   <ChatMenu
+                    disabled={!isConnected}
                     activeUser={activeUser}
                     onLeaveClick={() => leaveChat(activeChat._id)}
                     onDeleteClick={() => deleteChat(activeChat._id)}
@@ -54,6 +55,8 @@ class ChatHeader extends React.Component {
             </Grid>
             <Grid item> 
               <UserMenu
+                disabled={!isConnected}
+                soketsDisconnect={soketsDisconnect}
                 activeUser={activeUser}
                 logout={logout}
                 editUser={editUser}

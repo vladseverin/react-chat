@@ -5,6 +5,7 @@ import { redirect } from './services';
 export function missingSocketConnection() {
   return {
     type: types.SOCKETS_CONNECTION_MISSING,
+    payload: new Error('Missing connection!')
   };
 }
 
@@ -37,12 +38,14 @@ export function socketsConnect() {
     socket.on('error', (error) => {
       dispatch({
         type: types.SOCKETS_CONNECTION_FAILURE,
+        payload: new Error(`Connection ${error}`)
       });
     });
 
     socket.on('connect_error', () => {
       dispatch({
         type: types.SOCKETS_CONNECTION_FAILURE,
+        payload: new Error('We have lost a connection :(')
       });
     });
 
@@ -59,6 +62,7 @@ export function socketsConnect() {
         payload: { chat },
       });
     });
+    
 
     socket.on('deleted-chat', ({ chat }) => {
       const { activeId } = getState().chats;
@@ -75,6 +79,22 @@ export function socketsConnect() {
 
     return Promise.resolve();
   };
+}
+
+export function soketsDisconnect() {
+  return (dispatch) => {
+    dispatch({
+      type: types.SOCKETS_DISCONNECTION_REQUEST,
+    });
+
+    socket.on('disconnect', () => {
+      dispatch({
+        type: types.SOCKETS_DISCONNECTION_SUCCESS,
+      });
+
+      socket = null;
+    });
+  }
 }
 
 export function sendMessage(content) {
@@ -118,6 +138,7 @@ export function mountChat(chatId) {
     });
   };
 }
+
 export function unmountChat(chatId) {
   return (dispatch) => {
     if (!socket) {

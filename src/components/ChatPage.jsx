@@ -54,12 +54,14 @@ class ChatPage extends React.Component {
     const { 
       classes, logout, chats, activeUser,
       createChat, joinChat, leaveChat, deleteChat, sendMessage,
-      messages, editUser, error
+      messages, editUser, error, isConnected, soketsDisconnect
     } = this.props;
 
     return(
      <div className={classes.root}>       
-        <ChatHeader 
+        <ChatHeader
+          isConnected={isConnected}
+          soketsDisconnect={soketsDisconnect}
           logout={logout} 
           activeUser={activeUser}
           activeChat={chats.active}
@@ -68,10 +70,12 @@ class ChatPage extends React.Component {
           editUser={editUser}
         />
         <Sidebar 
+          isConnected={isConnected}
           chats={chats}
           createChat={createChat}
         />
         <Chat 
+          isConnected={isConnected}
           messages={messages}
           activeChat={chats.active}
           activeUser={activeUser}

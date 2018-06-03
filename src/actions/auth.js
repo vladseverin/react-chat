@@ -93,6 +93,7 @@ export function logout() {
           type: types.LOGOUT_SUCCESS,
           payload: json
         });
+
         
         document.location.reload(true);
       })
