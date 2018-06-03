@@ -70,11 +70,12 @@ export function logout() {
     return callApi('/logout') 
       .then(json => {
         localStorage.removeItem('token');
+        document.location.reload(true);
 
         dispatch({
           type: types.LOGOUT_SUCCESS,
           payload: json
-        })
+        });
       })
       .catch(reason => dispatch({
         type: types.LOGOUT_FAILURE,

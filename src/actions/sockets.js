@@ -5,7 +5,7 @@ import { redirect } from './services';
 export function missingSocketConnection() {
   return {
     type: types.SOCKETS_CONNECTION_MISSING,
-  }
+  };
 }
 
 let socket = null;
@@ -13,12 +13,13 @@ let socket = null;
 export function socketsConnect() {
   return (dispatch, getState) => {
     const { token } = getState().auth;
+
     dispatch({
       type: types.SOCKETS_CONNECTION_REQUEST,
     });
 
     socket = SocketIOClient('ws://localhost:9099/', {
-      query: { token }
+      query: { token },
     });
 
     socket.on('connect', () => {
@@ -27,7 +28,7 @@ export function socketsConnect() {
       });
     });
 
-    socket.on('error', () => {
+    socket.on('error', (error) => {
       dispatch({
         type: types.SOCKETS_CONNECTION_FAILURE,
       });
@@ -43,7 +44,7 @@ export function socketsConnect() {
       dispatch({
         type: types.RECIEVE_MESSAGE,
         payload: message,
-      });    
+      });
     });
 
     socket.on('new-chat', ({ chat }) => {
@@ -66,6 +67,7 @@ export function socketsConnect() {
       }
     });
 
+    return Promise.resolve();
   };
 }
 
@@ -77,23 +79,27 @@ export function sendMessage(content) {
       dispatch(missingSocketConnection());
     }
 
-    socket.emit('send-message', {
-      chatId: activeId,
-      content,
-    }, () => {
-      dispatch({
-        type: types.SEND_MESSAGE,
-        payload: {
-          chatId: activeId,
-          content,
-        },
-      });
-    });
+    socket.emit(
+      'send-message',
+      {
+        chatId: activeId,
+        content,
+      },
+      () => {
+        dispatch({
+          type: types.SEND_MESSAGE,
+          payload: {
+            chatId: activeId,
+            content,
+          },
+        });
+      },
+    );
   };
 }
 
 export function mountChat(chatId) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     if (!socket) {
       dispatch(missingSocketConnection());
     }
@@ -104,11 +110,10 @@ export function mountChat(chatId) {
       type: types.MOUNT_CHAT,
       payload: { chatId },
     });
-  }
+  };
 }
-
 export function unmountChat(chatId) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     if (!socket) {
       dispatch(missingSocketConnection());
     }
@@ -117,7 +122,7 @@ export function unmountChat(chatId) {
 
     dispatch({
       type: types.UNMOUNT_CHAT,
-      payload: { chatId }
+      payload: { chatId },
     });
   };
 }
