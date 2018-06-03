@@ -20,7 +20,7 @@ class ErrorMessage extends React.Component {
 
   render() {
     const { error } = this.props;
-
+   
     if (!error) {
       return null;
     }
@@ -40,7 +40,7 @@ class ErrorMessage extends React.Component {
             key="close"
             aria-label="Close"
             color="inherit"
-            onClick={this.handleClose}
+            onClick={this.handleCloseSnackbar}
           >
             <CloseIcon />
           </IconButton>,
