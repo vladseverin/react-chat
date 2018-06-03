@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 
 import LoginForm from './LoginForm.jsx';
 import SignupForm from './SignupForm.jsx';
+import ErrorMessage from './ErrorMessage';
 
 const styles = theme => ({
   welcomePage: {
@@ -41,7 +42,7 @@ class WelcomePage extends React.Component {
   };
 
   render() {
-    const { classes, signup, login, isAuthenticated } = this.props;
+    const { classes, signup, login, isAuthenticated, error } = this.props;
     const { activeTab } = this.state;
 
     if (isAuthenticated) {
@@ -79,7 +80,7 @@ class WelcomePage extends React.Component {
             {activeTab === 1 && <SignupForm onSubmit={signup} />}
           </Paper>
         </main>
-
+        <ErrorMessage error={error} />
       </div>
     );
   }
