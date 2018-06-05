@@ -1,10 +1,13 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles'
+import moment from 'moment';
 import classNames from 'classnames';
 import Avatar from './Avatar.jsx';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+
 import getColor from '../utils/color-form';
+import senderName from '../utils/sender-name';
 
 const styles = theme => ({
   messageWrapper: {
@@ -28,35 +31,58 @@ const styles = theme => ({
     backgroundColor: '#e6dcff',
     order: -1
   },
+  statusMessage : {
+    textAlign: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  }
 });
 
-const ChatMessage = ({ classes, ...message }) => {
+const ChatMessage = ({ classes, content, sender, activeUser, createdAt, statusMessage  }) => {
+  const displayedName = senderName(sender);
+
+  const isMessageFromMe = sender._id === activeUser._id;
+  
   const userAvatar = (
-    <Avatar colorFrom={message.sender}>
-      {message.sender}
+    <Avatar colorFrom={sender._id}>
+      {displayedName}
     </Avatar>
   );
 
-  const IsMessageFromMe = message.sender === "me";
+  if (statusMessage) {
+    return (
+      <div className={classes.messageWrapper}>
+        <Typography className={classes.statusMessage}>
+          <Typography variant="caption" style={{ color: getColor(sender._id) }} className={classes.statusMessageUser}>
+            {displayedName}
+          </Typography>
+          {content}
+          <Typography variant="caption" component="span">
+            {moment(createdAt).fromNow()}
+          </Typography>
+        </Typography>
+      </div>
+    )
+  }
 
   return (
-    <div className={IsMessageFromMe 
+    <div className={isMessageFromMe 
       ? classNames(classes.messageWrapperFromMe, classes.messageWrapper) 
       : classes.messageWrapper}>
       {userAvatar}
-      <Paper className={IsMessageFromMe 
+      <Paper className={isMessageFromMe 
         ? classNames(classes.messageFromMe, classes.message) 
         : classes.message}>
         <Typography variant="caption" 
-          style={{ color: getColor(message.sender)}}
+          style={{ color: getColor(sender._id)}}
         >
-          {message.sender}
+          {displayedName}
         </Typography>
         <Typography variant="body1" >
-          {message.content}
+          {content}
         </Typography>
         <Typography variant="caption">
-          2 days ago
+          {moment(createdAt).fromNow()}
         </Typography>
       </Paper>
     </div>
