@@ -81,7 +81,7 @@ export function socketsConnect() {
   };
 }
 
-export function soketsDisconnect() {
+export function socketsDisconnect() {
   return (dispatch) => {
     dispatch({
       type: types.SOCKETS_DISCONNECTION_REQUEST,

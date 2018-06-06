@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
 import { fetchAllChats, fetchMyChats, setActiveChat, createChat, deleteChat, joinChat, leaveChat } from '../actions/chats';
 import { editUser } from '../actions/users';
-import { sendMessage, mountChat, unmountChat, socketsConnect, soketsDisconnect } from '../actions/sockets';
+import { sendMessage, mountChat, unmountChat, socketsConnect, socketsDisconnect } from '../actions/sockets';
 import * as fromChats from '../reducers/chats';
 import * as fromState from '../reducers';
 import ChatPage from '../components/ChatPage.jsx';
@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   mountChat, 
   unmountChat, 
   socketsConnect,
-  soketsDisconnect
+  socketsDisconnect
 }, dispatch);
 
 export default connect(

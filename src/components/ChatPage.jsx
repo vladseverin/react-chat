@@ -38,6 +38,10 @@ class ChatPage extends React.Component {
       });
   }
 
+  componentWillUnmount() {
+    this.props.socketsDisconnect();
+  }
+
   componentWillReceiveProps(nextProps) {
     const { match: { params }, setActiveChat, unmountChat, mountChat } = this.props;
     const { params: nextParams } = nextProps.match;
@@ -54,14 +58,13 @@ class ChatPage extends React.Component {
     const { 
       classes, logout, chats, activeUser,
       createChat, joinChat, leaveChat, deleteChat, sendMessage,
-      messages, editUser, error, isConnected, soketsDisconnect
+      messages, editUser, error, isConnected,
     } = this.props;
 
     return(
      <div className={classes.root}>       
         <ChatHeader
           isConnected={isConnected}
-          soketsDisconnect={soketsDisconnect}
           logout={logout} 
           activeUser={activeUser}
           activeChat={chats.active}

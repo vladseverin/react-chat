@@ -54,7 +54,6 @@ class UserMenu extends Component {
   };
 
   handleLogoutClick = () => {
-    this.props.soketsDisconnect();
     this.props.logout();
     this.handleClose();
   };
