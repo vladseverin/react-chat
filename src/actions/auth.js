@@ -94,8 +94,6 @@ export function logout() {
           payload: json
         });
 
-        
-        document.location.reload(true);
       })
       .catch(reason => dispatch({
         type: types.LOGOUT_FAILURE,

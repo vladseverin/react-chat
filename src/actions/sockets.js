@@ -94,6 +94,8 @@ export function soketsDisconnect() {
 
       socket = null;
     });
+
+    socket.disconnect();
   }
 }
 
@@ -105,13 +107,10 @@ export function sendMessage(content) {
       dispatch(missingSocketConnection());
     }
 
-    socket.emit(
-      'send-message',
-      {
+    socket.emit('send-message', {
         chatId: activeId,
         content,
-      },
-      () => {
+      }, () => {
         dispatch({
           type: types.SEND_MESSAGE,
           payload: {
