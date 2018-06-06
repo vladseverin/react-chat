@@ -87,14 +87,6 @@ export function soketsDisconnect() {
       type: types.SOCKETS_DISCONNECTION_REQUEST,
     });
 
-    socket.on('disconnect', () => {
-      dispatch({
-        type: types.SOCKETS_DISCONNECTION_SUCCESS,
-      });
-
-      socket = null;
-    });
-
     socket.disconnect();
   }
 }
