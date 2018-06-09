@@ -4,7 +4,7 @@ import getColor from '../utils/color-form';
 import titleInitials from '../utils/title-initials';
 
 const Avatar = ({ colorFrom, children, ...rest }) => (
-  <MUIAvatar style={{ backgroundColor: getColor(colorFrom)}} {...rest}>
+  <MUIAvatar style={{ backgroundColor: getColor(colorFrom) }} {...rest}>
     {titleInitials(children)}
   </MUIAvatar>
 );

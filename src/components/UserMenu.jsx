@@ -4,7 +4,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-
 import Modal from '@material-ui/core/Modal';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -18,14 +17,14 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    
+
   },
   modal: {
     outlineColor: red[500],
     width: '30%',
     minWidth: '300px',
-    padding: theme.spacing.unit * 3
-  }
+    padding: theme.spacing.unit * 3,
+  },
 });
 
 class UserMenu extends Component {
@@ -34,7 +33,7 @@ class UserMenu extends Component {
     anchorEl: null,
     username: '',
     firstName: '',
-    lastName: ''
+    lastName: '',
   };
 
   componentWillReceiveProps(nextProps) {
@@ -42,10 +41,10 @@ class UserMenu extends Component {
       username: nextProps.activeUser.username,
       firstName: nextProps.activeUser.firstName,
       lastName: nextProps.activeUser.lastName,
-    })
+    });
   }
 
-  handleClick = event => {
+  handleClick = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
@@ -66,7 +65,7 @@ class UserMenu extends Component {
   }
 
   toggleEditProfileModal = () => {
-    this.setState({ isModalOpen: !this.state.isModalOpen })
+    this.setState({ isModalOpen: !this.state.isModalOpen });
     this.handleClose();
   }
 
@@ -96,7 +95,7 @@ class UserMenu extends Component {
           <AccountCircle />
         </IconButton>
         <Menu
-          id='simple-menu'
+          id="simple-menu"
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={this.handleClose}

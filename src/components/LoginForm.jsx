@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   iconSend: {
-    marginLeft: theme.spacing.unit
+    marginLeft: theme.spacing.unit,
   },
   authentication: {
     marginTop: theme.spacing.unit * 2,
@@ -15,11 +15,11 @@ const styles = theme => ({
   wrapperForm: {
     display: 'flex',
     flexFlow: 'column',
-    padding: theme.spacing.unit * 3
+    padding: theme.spacing.unit * 3,
   },
   button: {
     marginTop: theme.spacing.unit * 2,
-  }
+  },
 });
 
 class LoginForm extends Component {
@@ -34,19 +34,19 @@ class LoginForm extends Component {
     },
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     event.persist();
     const { name, value } = event.target;
 
     this.setState(prevState => ({
       [name]: {
         ...prevState[name],
-        value
-      }
+        value,
+      },
     }));
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     const { username, password } = this.state;
@@ -88,7 +88,8 @@ class LoginForm extends Component {
           className={classes.button}
           variant="raised"
           type="submit"
-          color="primary">
+          color="primary"
+        >
           Login <Send className={classes.iconSend} />
         </Button>
       </form>

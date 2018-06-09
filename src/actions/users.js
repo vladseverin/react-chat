@@ -1,6 +1,7 @@
 import * as types from '../constants/users';
 import callApi from '../utils/call-api';
 
+// eslint-disable-next-line
 export function editUser({ username, firstName, lastName }) {
   return (dispatch, getState) => {
     const state = getState();
@@ -12,23 +13,23 @@ export function editUser({ username, firstName, lastName }) {
     }
 
     dispatch({
-      type: types.EDIT_USER_REQUEST
+      type: types.EDIT_USER_REQUEST,
     });
 
     return callApi('/users/me', token, { method: 'POST' }, {
-      data: { 
-        username, 
-        firstName, 
+      data: {
+        username,
+        firstName,
         lastName,
-      }
+      },
     })
       .then(data => dispatch({
         type: types.EDIT_USER_SUCCESS,
-        payload: data
+        payload: data,
       }))
       .catch(reason => dispatch({
         type: types.EDIT_USER_FAILURE,
-        payload: reason
-      }))
+        payload: reason,
+      }));
   };
 }

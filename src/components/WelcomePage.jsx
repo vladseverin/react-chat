@@ -7,12 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper';
-
-import LoginForm from './LoginForm.jsx';
-import SignupForm from './SignupForm.jsx';
+import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
 import ErrorMessage from './ErrorMessage';
 
-const styles = theme => ({
+const styles = () => ({
   welcomePage: {
     display: 'flex',
     alignItems: 'center',
@@ -29,7 +28,6 @@ const styles = theme => ({
     flexBasis: 500,
     zIndex: '1100',
   },
-
 });
 
 class WelcomePage extends React.Component {
@@ -42,12 +40,14 @@ class WelcomePage extends React.Component {
   };
 
   render() {
-    const { classes, signup, login, isAuthenticated, error } = this.props;
+    const {
+      classes, signup, login, isAuthenticated, error,
+    } = this.props;
     const { activeTab } = this.state;
 
     if (isAuthenticated) {
       return (
-        <Redirect to='/chat' />
+        <Redirect to="/chat" />
       );
     }
 

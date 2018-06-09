@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const styles = () => ({
   wrapperHistory: {
     padding: '8px 24px',
     display: 'flex',
@@ -13,7 +13,7 @@ const styles = theme => ({
   colorName: {
     color: '#F44336',
     fontSize: '0.75rem',
-  }
+  },
 });
 
 const History = ({ classes }) => (

@@ -6,9 +6,9 @@ import { editUser } from '../actions/users';
 import { sendMessage, mountChat, unmountChat, socketsConnect, socketsDisconnect } from '../actions/sockets';
 import * as fromChats from '../reducers/chats';
 import * as fromState from '../reducers';
-import ChatPage from '../components/ChatPage.jsx';
+import ChatPage from '../components/ChatPage';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const activeChat = fromChats.getById(state.chats, state.chats.activeId);
 
   return {
@@ -40,14 +40,14 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   joinChat,
   leaveChat,
   editUser,
-  sendMessage, 
-  mountChat, 
-  unmountChat, 
+  sendMessage,
+  mountChat,
+  unmountChat,
   socketsConnect,
-  socketsDisconnect
+  socketsDisconnect,
 }, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ChatPage);

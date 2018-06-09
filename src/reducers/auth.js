@@ -18,18 +18,18 @@ export default function auth(state = initialState, action) {
         user: action.payload.user,
         token: action.payload.token,
       };
-    case types.RECIEVE_AUTH_SUCCESS: 
+    case types.RECIEVE_AUTH_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload.user
+        user: action.payload.user,
       };
     case types.SIGNUP_FAILURE:
     case types.LOGIN_FAILURE:
     case types.RECIEVE_AUTH_FAILURE:
     case types.LOGOUT_SUCCESS:
       return {
-        ...state, 
+        ...state,
         isAuthenticated: false,
         user: null,
         token: '',

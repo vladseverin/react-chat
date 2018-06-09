@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import ChatMessage from './ChatMessage.jsx';
+import ChatMessage from './ChatMessage';
 
 const styles = theme => ({
   messagesWrapper: {
@@ -15,15 +15,15 @@ const styles = theme => ({
       content: '""',
       height: '120px',
       display: 'block',
-    }
+    },
   },
   paper: {
     padding: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit * 5,
   },
   noMessages: {
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
 
 class ChatMessageList extends React.Component {
@@ -49,7 +49,9 @@ class ChatMessageList extends React.Component {
   }
 
   render() {
-    const { classes, messages, match, activeUser } = this.props;
+    const {
+      classes, messages, match, activeUser,
+    } = this.props;
 
     // If there's no active chat, then show a tip
     if (!match.params.chatId) {
@@ -70,11 +72,11 @@ class ChatMessageList extends React.Component {
 
     return messages && messages.length ? (
       <div className={classes.messagesWrapper} ref={this.messagesWrapper}>
-        {messages && messages.map((message, index) => (
-          <ChatMessage 
-            key={index}
+        {messages && messages.map(message => (
+          <ChatMessage
+            key={message._id}
             activeUser={activeUser}
-            {...message} 
+            {...message}
           />
         ))}
       </div>
@@ -83,7 +85,7 @@ class ChatMessageList extends React.Component {
         There is no messages yet...
       </Typography>
     );
-  };
-};
+  }
+}
 
 export default withRouter(withStyles(styles)(ChatMessageList));
