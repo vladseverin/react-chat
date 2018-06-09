@@ -5,10 +5,7 @@ import rootReducer from '../reducers';
 
 export default function configureStore() {
   if (process.env.NODE_ENV === 'production') {
-    return createStore(
-      rootReducer,
-      applyMiddleware(thunkMiddleware),
-    );
+    return createStore(rootReducer, applyMiddleware(thunkMiddleware));
   }
 
   /* eslint-disable no-underscore-dangle */
@@ -19,10 +16,7 @@ export default function configureStore() {
 
   const store = createStore(
     rootReducer,
-    composeEnhancers(applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleWare,
-    )),
+    composeEnhancers(applyMiddleware(thunkMiddleware, loggerMiddleWare)),
   );
 
   if (module.hot) {
@@ -33,4 +27,3 @@ export default function configureStore() {
 
   return store;
 }
-

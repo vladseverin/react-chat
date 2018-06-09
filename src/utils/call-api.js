@@ -1,9 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 export default function callApi(endpoint, token, options, payload) {
-  const authHeaders = token
-    ? { Authorization: `Bearer ${token}` }
-    : {};
+  const authHeaders = token ? { Authorization: `Bearer ${token}` } : {};
 
   return fetch(`http://localhost:9099/v1${endpoint}`, {
     method: 'GET',

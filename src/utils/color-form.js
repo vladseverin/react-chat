@@ -1,8 +1,6 @@
 import red from '@material-ui/core/colors/red';
 
-const colors = [
-  red[300], red[400], red[600], red[700], red[800], red[900],
-];
+const colors = [red[300], red[400], red[600], red[700], red[800], red[900]];
 
 export default function colorFrom(string) {
   try {

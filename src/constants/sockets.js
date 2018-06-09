@@ -12,4 +12,3 @@ export const RECIEVE_NEW_CHAT = Symbol('sockets/RECIEVE_NEW_CHAT');
 export const RECIEVE_DELETED_CHAT = Symbol('sockets/RECIEVE_DELETED_CHAT');
 
 export const SOCKETS_DISCONNECTION_REQUEST = Symbol('sockets/SOCKETS_DISCONNECTION_REQUEST');
-
