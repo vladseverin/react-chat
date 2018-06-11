@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Send from '@material-ui/icons/Send';
@@ -23,6 +24,11 @@ const styles = theme => ({
 });
 
 class LoginForm extends Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   state = {
     username: {
       value: '',
@@ -48,7 +54,7 @@ class LoginForm extends Component {
         value,
       },
     }));
-  }
+  };
 
   validate = () => {
     const { password, repeatedPassword } = this.state;
@@ -116,12 +122,7 @@ class LoginForm extends Component {
           className={classes.authentication}
           error={!repeatedPassword.isValid}
         />
-        <Button
-          className={classes.button}
-          variant="raised"
-          type="submit"
-          color="primary"
-        >
+        <Button className={classes.button} variant="raised" type="submit" color="primary">
           Login <Send className={classes.iconSend} />
         </Button>
       </form>

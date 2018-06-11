@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -27,9 +28,39 @@ const styles = theme => ({
 });
 
 class ChatMessageList extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    messages: PropTypes.arrayOf(PropTypes.shape({
+      chatId: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      sender: PropTypes.shape({
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
+        username: PropTypes.string.isRequired,
+        _id: PropTypes.string.isRequired,
+      }).isRequired,
+      _id: PropTypes.string.isRequired,
+    })),
+    match: PropTypes.shape({
+      params: PropTypes.object.isRequired,
+    }).isRequired,
+    activeUser: PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      username: PropTypes.string,
+      isMember: PropTypes.bool.isRequired,
+      isCreator: PropTypes.bool.isRequired,
+      isChatMember: PropTypes.bool.isRequired,
+    }).isRequired,
+  };
+
+  static defaultProps = {
+    messages: [],
+  };
+
   constructor(props) {
     super(props);
-
     this.messagesWrapper = React.createRef();
   }
 
@@ -72,13 +103,10 @@ class ChatMessageList extends React.Component {
 
     return messages && messages.length ? (
       <div className={classes.messagesWrapper} ref={this.messagesWrapper}>
-        {messages && messages.map(message => (
-          <ChatMessage
-            key={message._id}
-            activeUser={activeUser}
-            {...message}
-          />
-        ))}
+        {messages &&
+          messages.map(message => (
+            <ChatMessage key={message._id} activeUser={activeUser} {...message} />
+          ))}
       </div>
     ) : (
       <Typography className={classes.noMessages} variant="display1">

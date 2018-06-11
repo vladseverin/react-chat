@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -31,6 +32,18 @@ const styles = () => ({
 });
 
 class WelcomePage extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    signup: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    error: PropTypes.instanceOf(Error),
+  };
+
+  static defaultProps = {
+    error: null,
+  };
+
   state = {
     activeTab: 0,
   };
@@ -46,14 +59,12 @@ class WelcomePage extends React.Component {
     const { activeTab } = this.state;
 
     if (isAuthenticated) {
-      return (
-        <Redirect to="/chat" />
-      );
+      return <Redirect to="/chat" />;
     }
 
     return (
       <div className={classes.welcomePage}>
-        <AppBar className={classes.appBar} >
+        <AppBar className={classes.appBar}>
           <Toolbar>
             <Typography variant="title" color="inherit">
               Juicy Chat

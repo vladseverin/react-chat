@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Paper from '@material-ui/core/Paper';
@@ -19,15 +20,23 @@ const style = theme => ({
 });
 
 class MessageInput extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    showJoinButton: PropTypes.bool.isRequired,
+    onJoinButtonClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    sendMessage: PropTypes.func.isRequired,
+  };
+
   state = {
     value: '',
-  }
+  };
 
   handleValueChange = (event) => {
     this.setState({
       value: event.target.value,
     });
-  }
+  };
 
   handleKeyPress = (event) => {
     const { value } = this.state;
@@ -36,7 +45,7 @@ class MessageInput extends React.Component {
       this.props.sendMessage(value);
       this.setState({ value: '' });
     }
-  }
+  };
 
   render() {
     const {

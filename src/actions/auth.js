@@ -120,7 +120,7 @@ export function recieveAuth() {
 
     if (!token) {
       dispatch({
-        type: types.RECIEVE_AUTH_FAILURE,
+        type: types.RECIEVE_AUTH_REQUEST,
       });
     }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -17,7 +18,6 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-
   },
   modal: {
     outlineColor: red[500],
@@ -28,6 +28,21 @@ const styles = theme => ({
 });
 
 class UserMenu extends Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    disabled: PropTypes.bool.isRequired,
+    activeUser: PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      username: PropTypes.string,
+      isMember: PropTypes.bool.isRequired,
+      isCreator: PropTypes.bool.isRequired,
+      isChatMember: PropTypes.bool.isRequired,
+    }).isRequired,
+    logout: PropTypes.func.isRequired,
+    editUser: PropTypes.func.isRequired,
+  };
+
   state = {
     isModalOpen: false,
     anchorEl: null,
@@ -57,17 +72,16 @@ class UserMenu extends Component {
     this.handleClose();
   };
 
-
   handleInputChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
-  }
+  };
 
   toggleEditProfileModal = () => {
     this.setState({ isModalOpen: !this.state.isModalOpen });
     this.handleClose();
-  }
+  };
 
   handleSaveClick = () => {
     this.props.editUser({
@@ -76,8 +90,7 @@ class UserMenu extends Component {
       lastName: this.state.lastName,
     });
     this.toggleEditProfileModal();
-  }
-
+  };
 
   render() {
     const { anchorEl, isModalOpen } = this.state;
@@ -147,12 +160,9 @@ class UserMenu extends Component {
             <Button color="primary" onClick={this.handleSaveClick}>
               Save
             </Button>
-            <Button onClick={this.toggleEditProfileModal}>
-              Close
-            </Button>
+            <Button onClick={this.toggleEditProfileModal}>Close</Button>
           </Paper>
         </Modal>
-
       </React.Fragment>
     );
   }

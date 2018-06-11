@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -21,17 +22,29 @@ const styles = theme => ({
 });
 
 const ChatHeader = ({
-  classes, logout, activeUser, activeChat, leaveChat, deleteChat, editUser, isConnected,
+  classes,
+  logout,
+  activeUser,
+  activeChat,
+  leaveChat,
+  deleteChat,
+  editUser,
+  isConnected,
 }) => (
-  <AppBar className={classes.appBar} >
+  <AppBar className={classes.appBar}>
     <Toolbar>
-      <Grid container spacing={24} direction="row" justify="space-between" alignItems="center" wrap="nowrap">
+      <Grid
+        container
+        spacing={24}
+        direction="row"
+        justify="space-between"
+        alignItems="center"
+        wrap="nowrap"
+      >
         <Grid container direction="row" wrap="nowrap" justify="flex-start" alignItems="center">
           {activeChat ? (
             <React.Fragment>
-              <Avatar colorFrom={activeChat._id}>
-                {activeChat.title}
-              </Avatar>
+              <Avatar colorFrom={activeChat._id}>{activeChat.title}</Avatar>
               <Typography variant="title" className={classes.appBarTitle}>
                 {activeChat.title}
               </Typography>
@@ -44,10 +57,9 @@ const ChatHeader = ({
             </React.Fragment>
           ) : (
             <Typography variant="title" color="inherit" noWrap>
-            Juicy Chat
+              Juicy Chat
             </Typography>
           )}
-
         </Grid>
         <Grid item>
           <UserMenu
@@ -61,5 +73,43 @@ const ChatHeader = ({
     </Toolbar>
   </AppBar>
 );
+
+ChatHeader.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  activeUser: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    username: PropTypes.string,
+    isMember: PropTypes.bool.isRequired,
+    isCreator: PropTypes.bool.isRequired,
+    isChatMember: PropTypes.bool.isRequired,
+  }).isRequired,
+  activeChat: PropTypes.shape({
+    createdAt: PropTypes.string.isRequired,
+    creator: PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      username: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+    }).isRequired,
+    members: PropTypes.arrayOf(PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      username: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+    })).isRequired,
+    title: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+  }),
+  logout: PropTypes.func.isRequired,
+  leaveChat: PropTypes.func.isRequired,
+  deleteChat: PropTypes.func.isRequired,
+  editUser: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
+};
+
+ChatHeader.defaultProps = {
+  activeChat: null,
+};
 
 export default withStyles(styles)(ChatHeader);
