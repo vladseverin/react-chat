@@ -1,6 +1,6 @@
-/* eslint-env jest */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
 import ChatMessage from './ChatMessage';
 
 jest.mock('moment', () => () => ({ fromNow: () => 'a few seconds ago' }));
@@ -20,8 +20,15 @@ const mockProps = {
   statusMessage: false,
 };
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<ChatMessage {...mockProps} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('<ChatMessage />', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<ChatMessage {...mockProps} />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('renders correctly', () => {
+    const tree = renderer.create(<ChatMessage {...mockProps} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

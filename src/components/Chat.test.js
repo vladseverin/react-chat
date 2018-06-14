@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
 import Chat from './Chat';
 
@@ -52,13 +53,25 @@ const mockProps = {
   isConnected: true,
   sendMessage: jest.fn(),
 };
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(
-    <MemoryRouter>
-      <Chat {...mockProps} />
-    </MemoryRouter>,
-    div,
-  );
-  ReactDOM.unmountComponentAtNode(div);
+
+describe('<Chat />', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <MemoryRouter>
+        <Chat {...mockProps} />
+      </MemoryRouter>,
+      div,
+    );
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('renders correctly ', () => {
+    const tree = renderer
+      .create(<MemoryRouter>
+          <Chat {...mockProps} />
+              </MemoryRouter>)
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
 import { MemoryRouter, Route } from 'react-router-dom';
 import WelcomePage from './WelcomePage';
 
@@ -14,13 +15,24 @@ const mockProps = {
   error: null,
 };
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(
-    <MemoryRouter initialEntries={['/']}>
-      <Route path="/(welcome)?" render={props => <WelcomePage {...mockProps} {...props} />} />
-    </MemoryRouter>,
-    div,
-  );
-  ReactDOM.unmountComponentAtNode(div);
+describe('<WelcomePage />', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <MemoryRouter initialEntries={['/']}>
+        <Route path="/(welcome)?" render={props => <WelcomePage {...mockProps} {...props} />} />
+      </MemoryRouter>,
+      div,
+    );
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('renders correctly', () => {
+    const tree = renderer
+      .create(<MemoryRouter initialEntries={['/']}>
+          <Route path="/(welcome)?" render={props => <WelcomePage {...mockProps} {...props} />} />
+              </MemoryRouter>)
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

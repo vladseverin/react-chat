@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
 import ChatMenu from './ChatMenu';
 
 const mockProps = {
@@ -16,8 +17,15 @@ const mockProps = {
   onDeleteClick: jest.fn(),
 };
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<ChatMenu {...mockProps} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('<ChatMenu />', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<ChatMenu {...mockProps} />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('renders correctly', () => {
+    const tree = renderer.create(<ChatMenu {...mockProps} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });
