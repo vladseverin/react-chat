@@ -7,7 +7,7 @@ export default function titleInitials(title) {
       .join('');
   } catch (e) {
     // eslint-disable-next-line
-    console.error(e);
+    // console.error(e);
     return '🦄';
   }
 }
