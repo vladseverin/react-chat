@@ -1,7 +1,7 @@
 import SocketIOClient from 'socket.io-client';
 import * as types from '../constants/sockets';
 import { redirect } from './services';
-import config from '../config';
+import { SOCKETS_URI } from '../config';
 
 export function missingSocketConnection() {
   return {
@@ -26,7 +26,7 @@ export function socketsConnect() {
       type: types.SOCKETS_CONNECTION_REQUEST,
     });
 
-    socket = SocketIOClient(config.SOCKETS_URI, {
+    socket = SocketIOClient(SOCKETS_URI, {
       query: { token },
     });
 
