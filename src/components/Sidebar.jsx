@@ -52,12 +52,12 @@ class Sidebar extends React.Component {
 
   filterChats = (chats) => {
     const { searchValue } = this.state;
+    const _chats = chats.sort((one, two) => ((one.title || '').toLowerCase() <= (two.title || '').toLowerCase() ? -1 : 1));
     if (!searchValue) {
-      return chats;
+      return _chats;
     }
-    return chats
-      .filter(chat => chat.title.toLowerCase().includes(searchValue.toLowerCase()))
-      .sort((one, two) => (one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1));
+    return _chats.filter(({ title = '' }) =>
+      title.toLowerCase().includes(searchValue.toLowerCase()));
   };
 
   handleSearchChange = (event) => {

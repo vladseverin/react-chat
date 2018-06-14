@@ -44,7 +44,7 @@ ChatList.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   chats: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     createdAt: PropTypes.string.isRequired,
   })).isRequired,
   activeChat: PropTypes.shape({

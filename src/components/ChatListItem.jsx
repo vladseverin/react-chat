@@ -32,7 +32,7 @@ const ChatListItem = ({
 ChatListItem.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   disabled: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   chatId: PropTypes.string.isRequired,
   active: PropTypes.bool,
   createdAt: PropTypes.string.isRequired,
@@ -40,6 +40,7 @@ ChatListItem.propTypes = {
 
 ChatListItem.defaultProps = {
   active: null,
+  title: '',
 };
 
 export default withStyles(styles)(ChatListItem);

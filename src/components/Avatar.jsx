@@ -12,7 +12,11 @@ const Avatar = ({ colorFrom, children, ...rest }) => (
 
 Avatar.propTypes = {
   colorFrom: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.string,
+};
+
+Avatar.defaultProps = {
+  children: '🦄',
 };
 
 export default Avatar;
