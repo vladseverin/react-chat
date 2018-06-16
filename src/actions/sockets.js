@@ -87,7 +87,8 @@ export function socketsDisconnect() {
       type: types.SOCKETS_DISCONNECTION_REQUEST,
     });
 
-    socket.disconnect();
+    // eslint-disable-next-line
+    socket && socket.disconnect();
   };
 }
 
