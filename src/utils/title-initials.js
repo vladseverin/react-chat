@@ -6,8 +6,6 @@ export default function titleInitials(title) {
       .map(chat => chat.toUpperCase())
       .join('');
   } catch (e) {
-    // eslint-disable-next-line
-    // console.error(e);
     return '🦄';
   }
 }
