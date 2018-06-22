@@ -1,11 +1,12 @@
 import SocketIOClient from 'socket.io-client';
 import * as types from '../constants/sockets';
 import { redirect } from './services';
+import config from '../config';
 
 export function missingSocketConnection() {
   return {
     type: types.SOCKETS_CONNECTION_MISSING,
-    payload: new Error('Missing connection!')
+    payload: new Error('Missing connection!'),
   };
 }
 
@@ -25,7 +26,7 @@ export function socketsConnect() {
       type: types.SOCKETS_CONNECTION_REQUEST,
     });
 
-    socket = SocketIOClient('ws://localhost:9099/', {
+    socket = SocketIOClient(config.SOCKETS_URI, {
       query: { token },
     });
 
@@ -38,14 +39,14 @@ export function socketsConnect() {
     socket.on('error', (error) => {
       dispatch({
         type: types.SOCKETS_CONNECTION_FAILURE,
-        payload: new Error(`Connection ${error}`)
+        payload: new Error(`Connection ${error}`),
       });
     });
 
     socket.on('connect_error', () => {
       dispatch({
         type: types.SOCKETS_CONNECTION_FAILURE,
-        payload: new Error('We have lost a connection :(')
+        payload: new Error('We have lost a connection :('),
       });
     });
 
@@ -62,7 +63,6 @@ export function socketsConnect() {
         payload: { chat },
       });
     });
-    
 
     socket.on('deleted-chat', ({ chat }) => {
       const { activeId } = getState().chats;
@@ -87,8 +87,9 @@ export function socketsDisconnect() {
       type: types.SOCKETS_DISCONNECTION_REQUEST,
     });
 
-    socket.disconnect();
-  }
+    // eslint-disable-next-line
+    socket && socket.disconnect();
+  };
 }
 
 export function sendMessage(content) {
@@ -99,10 +100,13 @@ export function sendMessage(content) {
       dispatch(missingSocketConnection());
     }
 
-    socket.emit('send-message', {
+    socket.emit(
+      'send-message',
+      {
         chatId: activeId,
         content,
-      }, () => {
+      },
+      () => {
         dispatch({
           type: types.SEND_MESSAGE,
           payload: {

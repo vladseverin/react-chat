@@ -1,11 +1,12 @@
-import { combineReducers } from 'redux'
+/* eslint no-use-before-define: 0 */
+import { combineReducers } from 'redux';
 import * as types from '../constants';
 
 const initialState = {
   activeId: null,
   allIds: [],
   myIds: [],
-  byIds: {}
+  byIds: {},
 };
 
 const activeId = (state = initialState.activeId, action) => {
@@ -77,10 +78,11 @@ const byIds = (state = initialState.byIds, action) => {
         [getChatId(action.payload.chat)]: action.payload.chat,
       };
     case types.DELETE_CHAT_SUCCESS:
-    case types.RECIEVE_DELETED_CHAT: 
+    case types.RECIEVE_DELETED_CHAT: {
       const newState = { ...state };
       delete newState[getChatId(action.payload.chat)];
       return newState;
+    }
     default:
       return state;
   }
@@ -91,8 +93,9 @@ export default combineReducers({
   allIds,
   myIds,
   byIds,
-})
+});
 
-export const getChatId = (chat) => chat._id;
+// eslint-disable-next-line
+export const getChatId = chat => chat._id;
 export const getById = (state, id) => state.byIds[id];
 export const getByIds = (state, ids) => ids.map(id => getById(state, id));

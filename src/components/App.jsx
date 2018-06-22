@@ -15,21 +15,20 @@ const theme = createMuiTheme({
       main: red[500],
       dark: red[700],
       contrastText: grey[50],
-    }
-  }
+    },
+  },
 });
 
 const App = () => (
-    <MuiThemeProvider theme={theme}>
-      <Router history={history}>
-        <Switch>
-          <Route exact path='/(welcome)?' component={WelcomePage} />
-          <PrivateRoute path='/chat/:chatId?' component={ChatPage} />
-          <Redirect to='/' />
-        </Switch>
-      </Router>
-    </MuiThemeProvider>
+  <MuiThemeProvider theme={theme}>
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/(welcome)?" component={WelcomePage} />
+        <PrivateRoute path="/chat/:chatId?" component={ChatPage} />
+        <Redirect to="/" />
+      </Switch>
+    </Router>
+  </MuiThemeProvider>
 );
-
 
 export default App;

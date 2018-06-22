@@ -5,8 +5,7 @@ export default function titleInitials(title) {
       .map(word => word[0])
       .map(chat => chat.toUpperCase())
       .join('');
-  } catch(e) {
-    console.error(e);
+  } catch (e) {
     return '🦄';
   }
 }

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatMessage /> renders correctly 1`] = `
+<div
+  className="ChatMessage-messageWrapperFromMe-61 ChatMessage-messageWrapper-60"
+>
+  <div
+    className="MuiAvatar-root-65 MuiAvatar-colorDefault-66"
+    style={
+      Object {
+        "backgroundColor": "#d32f2f",
+      }
+    }
+  >
+    VS
+  </div>
+  <div
+    className="MuiPaper-root-68 MuiPaper-elevation2-72 MuiPaper-rounded-69 ChatMessage-messageFromMe-63 ChatMessage-message-62"
+  >
+    <span
+      className="MuiTypography-root-95 MuiTypography-caption-105"
+      style={
+        Object {
+          "color": "#d32f2f",
+        }
+      }
+    >
+      Vladislav Severin
+    </span>
+    <p
+      className="MuiTypography-root-95 MuiTypography-body1-104"
+    >
+      Hey, Wassup
+    </p>
+    <span
+      className="MuiTypography-root-95 MuiTypography-caption-105"
+    >
+      a few seconds ago
+    </span>
+  </div>
+</div>
+`;

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatHeader /> renders correctly 1`] = `
+<header
+  className="MuiPaper-root-165 MuiPaper-elevation4-171 MuiAppBar-root-157 MuiAppBar-positionFixed-158 MuiAppBar-colorPrimary-163 mui-fixed ChatHeader-appBar-155"
+>
+  <div
+    className="MuiToolbar-root-192 MuiToolbar-gutters-193"
+  >
+    <div
+      className="MuiGrid-container-194 MuiGrid-spacing-xs-24-217 MuiGrid-wrap-xs-nowrap-200 MuiGrid-align-items-xs-center-202 MuiGrid-justify-xs-space-between-213"
+    >
+      <div
+        className="MuiGrid-container-194 MuiGrid-wrap-xs-nowrap-200 MuiGrid-align-items-xs-center-202"
+      >
+        Avatar
+        <h2
+          className="MuiTypography-root-285 MuiTypography-title-291 ChatHeader-appBarTitle-156"
+        >
+          myChat
+        </h2>
+        ChatMenu
+      </div>
+      <div
+        className="MuiGrid-item-195"
+      >
+        UserMenu
+      </div>
+    </div>
+  </div>
+</header>
+`;

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatMessageList /> renders correctly 1`] = `
+<div
+  className="MuiPaper-root-58 MuiPaper-elevation2-62 MuiPaper-rounded-59 ChatMessageList-paper-56"
+>
+  <h1
+    className="MuiTypography-root-85 MuiTypography-display1-89 MuiTypography-gutterBottom-102"
+  >
+    Start messaging…
+  </h1>
+  <p
+    className="MuiTypography-root-85 MuiTypography-body1-94 MuiTypography-gutterBottom-102"
+  >
+    Use 
+    <strong>
+      Global
+    </strong>
+     to explore communities around here.
+  </p>
+  <p
+    className="MuiTypography-root-85 MuiTypography-body1-94 MuiTypography-gutterBottom-102"
+  >
+    Use 
+    <strong>
+      Recents
+    </strong>
+     to see your recent conversations.
+  </p>
+</div>
+`;
